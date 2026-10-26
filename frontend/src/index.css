@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --background: 240 20% 3%;
+  --foreground: 120 100% 85%;
+
+  --card: 240 25% 8%;
+  --card-foreground: 120 100% 85%;
+  --card-border: 120 40% 20%;
+
+  --glass-bg: hsla(240, 25%, 12%, 0.8);
+  --glass-border: hsla(120, 40%, 30%, 0.3);
+  --glass-blur: blur(16px);
+
+  --primary: 120 100% 50%;
+  --primary-foreground: 240 20% 95%;
+  --primary-hover: 120 100% 45%;
+
+  --secondary: 200 100% 60%;
+  --secondary-foreground: 240 20% 95%;
+
+  --accent: 0 100% 60%;
+  --accent-foreground: 240 20% 95%;
+
+  --destructive: 0 100% 60%;
+  --destructive-foreground: 240 20% 95%;
+  --success: 120 100% 50%;
+  --warning: 40 100% 60%;
+
+  --border: 120 30% 20%;
+  --input: 120 30% 20%;
+  --ring: 120 100% 50%;
+  --radius: 0.75rem;
+
+  --muted: 120 20% 70%;
+  --muted-foreground: 120 20% 60%;
+
+  --popover: 240 25% 8%;
+  --popover-foreground: 120 100% 85%;
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --font-mono: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar { display: none; }
+
+body {
+  margin: 0;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+  font-feature-settings: "rlig" 1, "calt" 1;
+  min-height: 100svh;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+body::-webkit-scrollbar { display: none; }
+
+.stars-form-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 30% 40%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 90% 30%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 20% 80%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 80% 90%, rgba(255,255,255,0.7), transparent);
+  background-size: 200% 200%;
+  animation: stars-move 200s linear infinite;
+  z-index: 0;
+  border-radius: 1.5rem;
+}
+
+.terminal-text {
+  font-family: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+  letter-spacing: 0.05em;
+}
+
+.typing-header {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing-header-anim 10s steps(15, end) infinite;
+}
+
+.typing-header::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 0.1em;
+  background: hsl(var(--primary));
+  box-shadow: 0 0 8px hsl(var(--primary));
+}
+
+.btn-hacker {
+  position: relative;
+  overflow: hidden;
+  padding: 0.75rem 1.5rem;
+  font-family: monospace;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border-radius: var(--radius);
+  transition: all 0.3s;
+  background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--accent)));
+  color: white;
+  border: none;
+  z-index: 1;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn-hacker::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.5s;
+  z-index: -1;
+}
+.btn-hacker:hover::before { left: 100%; }
+.btn-hacker:active { transform: translateY(2px); }
+
+::selection {
+  background-color: hsl(var(--primary) / 0.4);
+  color: hsl(var(--foreground));
+  text-shadow: 0 0 8px hsl(var(--primary));
+}
+
+.prose { color: hsl(var(--foreground)); }
+.prose p { margin: 1rem 0; line-height: 1.7; }
+.prose a { color: hsl(var(--primary)); text-decoration: underline; }
+.prose code {
+  background: hsl(var(--muted) / 0.3);
+  color: hsl(var(--foreground));
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-size: 0.875em;
+}
+
+@keyframes fadeInOut {
+  0%   { opacity: 0; transform: scale(0.8); }
+  20%  { opacity: 1; transform: scale(1); }
+  80%  { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.8); }
+}
+
+@keyframes stars-move {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: -200% -200%; }
+}
+
+@keyframes pulse {
+  0%   { transform: scale(1); opacity: 0.1; }
+  100% { transform: scale(1.5); opacity: 0.3; }
+}
+
+@keyframes blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes typing-header-anim {
+  0%   { width: 0; }
+  30%  { width: 100%; }
+  80%  { width: 100%; }
+  100% { width: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+.animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+.animate-float   { animation: float 3s ease-in-out infinite; }
+
+.cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  background: hsl(var(--primary));
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  box-shadow: 0 0 10px hsl(var(--primary));
+}

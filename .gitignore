@@ -1,0 +1,36 @@
+# dependencies
+**/node_modules/
+
+# next build
+.next/
+out/
+
+# production
+build/
+dist/
+
+# env files
+.env
+.env.*
+.env.local
+.env.*.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS junk & editors
+.DS_Store
+Thumbs.db
+.vscode/
+
+# misc
+coverage/
+
+# Security - database scripts with credentials
+*.sql
+add-*.js
+
+# local-only admin UI (do not commit)
+frontend/app/admin/
